@@ -32,7 +32,7 @@ if($userId){
     $response->userId = $userId;
     $response->status = 1; 
 }else{
-    $response->data = 0;
+    $response->userId = 0;
     $response->status = 0; 
 }
 echo  json_encode($response); 
