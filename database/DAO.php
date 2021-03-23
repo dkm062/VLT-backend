@@ -409,7 +409,6 @@ class DAO{
         $sql = substr($sql, 0, strlen($sql)-2);
         reset($array);
         $sql .= " WHERE ".key($array)." = '".reset($array)."';";
-        
         return $this->connection->query($sql);
     }
     

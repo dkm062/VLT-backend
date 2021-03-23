@@ -9,18 +9,18 @@ $response = new Response();
 $json = file_get_contents('php://input');
 $request = json_decode($json);
 
-if(!empty($request->serviceId)){
-	$service = $dao->get("Service", $request->serviceId, "serviceId");
-	if($service->serviceId){
-		$service->isDeleted = 1;
+if(!empty($request->userId)){
+	$user = $dao->get("User", $request->userId, "userId");
+	if($user->userId){
+		$user->isDeleted = 1;
 
-		$serviceId = $dao->update($service);
+		$isUpdated = $dao->update($user);
 		$dao->close();
 
-    	$response->isDeleted = $serviceId ? 1 : 0;
-    } else {
-    	$response->isDeleted = 0;
-    }
+   		$response->isDeleted = $isUpdated ? 1 : 0;
+	} else {
+		$response->isDeleted = 0;
+	}
 	
 } else {
 	$response->isDeleted = 0;
