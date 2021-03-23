@@ -410,7 +410,7 @@ class DAO{
         reset($array);
         $sql .= " WHERE ".key($array)." = '".reset($array)."';";
         
-        $this->connection->query($sql);
+        return $this->connection->query($sql);
     }
     
     public final function delete($entityName, $whereColumn = "", $whereValue=""){
