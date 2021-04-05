@@ -65,14 +65,6 @@ class Validator{
             {
                 return "Invalid username or password (Error 101)";
             }
-            else if($user->userRole == 2 && !$api)
-            {
-                return "You are not Admin.";
-            }
-            else if($user->userRole == 1 && $api)
-            {
-                return "You are not User.";
-            }
             else if(strcmp($user->password,  $password ) == 0)
             {
                 //the password matches

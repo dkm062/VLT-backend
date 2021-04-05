@@ -8,6 +8,7 @@ class Service{
     public $description;
     public $status;
     public $price;
+    public $images;
     public $createdOn;
     public $updatedOn;
     public $isDeleted;

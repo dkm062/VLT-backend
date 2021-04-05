@@ -14,6 +14,7 @@ $service->name = $request->name;
 $service->description = $request->description;
 $service->status = $request->status;
 $service->price = $request->price;
+$service->images = $request->images;
 $service->isDeleted = 0;
 
 $serviceId = $dao->add($service);
