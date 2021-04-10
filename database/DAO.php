@@ -5,6 +5,8 @@ require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/User.php"
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/Service.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/File.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/UserRole.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/Orders.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/Item.php");
 
 class DAO{
     
