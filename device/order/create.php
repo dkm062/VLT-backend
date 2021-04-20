@@ -9,9 +9,8 @@ $request = json_decode($json);
 
 $Order = new Orders();
 $Order->userId = $request->userId;
-$Order->orderDate = $request->orderDate;
+$Order->orderDate = date("Y-m-d h:s:i", strtotime($request->orderDate));
 $Order->orderStatus = 1;
-
 $orderId = $dao->add($Order);
 
 $items = (array)$request->items;
@@ -43,7 +42,4 @@ class Response {
     public $itemIds;
     public $status;
 }
-
-
-
 ?>

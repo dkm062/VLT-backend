@@ -26,16 +26,8 @@ if($isDuplicate){
 	$user->email = $request->email;
 	$user->phoneNumber = $request->phone;
 	$user->password = $request->password;
-	$user->address = $request->formattedAddress;
 	$user->userRole = 3;
-	$user->userStatus=1;
-	// $user-> = $request->isVendor;
-	// $user-> = $request->businessName;
-	// $user->address = $request->deliveryAddress;
-	// $user-> = $request->addressLocation;
-	// $user->lastLogIn;
-	// $user->logInIP;
-	// $user->isDeleted;
+	$user->userStatus = 1;
 	$userId = $dao->add($user);
 	if($userId){
 	    $response->userId = $userId;
