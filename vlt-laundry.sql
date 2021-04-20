@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2021 at 07:42 AM
+-- Generation Time: Apr 20, 2021 at 02:47 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -63,25 +63,45 @@ CREATE TABLE `file` (
 
 CREATE TABLE `item` (
   `itemId` int(11) NOT NULL,
+  `serviceId` int(11) NOT NULL,
+  `price` text NOT NULL,
   `orderId` int(11) NOT NULL,
   `createdOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedOn` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`itemId`, `serviceId`, `price`, `orderId`, `createdOn`, `updatedOn`) VALUES
+(1, 1, '30.00', 1030, '2021-04-14 01:08:42', '0000-00-00 00:00:00'),
+(2, 16, '25.00', 1031, '2021-04-14 01:09:37', '0000-00-00 00:00:00'),
+(3, 17, '25.00', 1032, '2021-04-14 01:10:06', '0000-00-00 00:00:00');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE `order` (
-  `orderId` int(11) NOT NULL,
+CREATE TABLE `orders` (
+  `ordersId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `orderStatus` int(2) NOT NULL,
   `orderDate` datetime NOT NULL,
   `createdOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedOn` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`ordersId`, `userId`, `orderStatus`, `orderDate`, `createdOn`, `updatedOn`) VALUES
+(1030, 12, 1, '2021-04-14 01:00:08', '2021-04-14 01:08:42', '0000-00-00 00:00:00'),
+(1031, 12, 1, '2021-04-14 01:00:09', '2021-04-14 01:09:37', '0000-00-00 00:00:00'),
+(1032, 12, 1, '2021-04-14 01:00:10', '2021-04-14 01:10:06', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -92,13 +112,23 @@ CREATE TABLE `order` (
 CREATE TABLE `service` (
   `serviceId` int(10) NOT NULL,
   `name` varchar(266) NOT NULL,
-  `description` varchar(266) NOT NULL,
-  `price` float NOT NULL DEFAULT '0',
+  `description` text NOT NULL,
+  `price` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `images` text NOT NULL,
   `status` int(1) NOT NULL,
   `createdOn` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedOn` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `updatedOn` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `isDeleted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`serviceId`, `name`, `description`, `price`, `images`, `status`, `createdOn`, `updatedOn`, `isDeleted`) VALUES
+(1, 'Ironing ', '', '30.00', 'http://localhost:8012/VLT-backend/images/1618247438/test.png', 1, '2021-03-23 17:18:28', '0000-00-00 00:00:00', 0),
+(16, 'Dry cleaning', 'The best service in town here how we do it.', '25.00', 'http://localhost:8012/VLT-backend/images/1618247465/test.png', 1, '2021-03-24 15:46:43', '2021-04-06 16:39:20', 0),
+(17, 'Washing + ironing', 'This service include washing and ironing', '25.00', 'http://localhost:8012/VLT-backend/images/1618247585/test.png', 1, '2021-04-06 16:49:46', '2021-04-11 19:07:27', 0);
 
 -- --------------------------------------------------------
 
@@ -128,13 +158,19 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userId`, `firstName`, `lastName`, `email`, `phoneNumber`, `address`, `password`, `userStatus`, `userRole`, `lastLogIn`, `logInIP`, `createdOn`, `updatedOn`, `isDeleted`) VALUES
-(1, NULL, NULL, NULL, NULL, '', NULL, 0, 3, '2021-03-23 01:59:40', '0', '2021-03-23 01:59:40', NULL, 0),
-(2, NULL, NULL, NULL, NULL, '', NULL, 0, 3, '2021-03-23 02:01:36', '0', '2021-03-23 02:01:36', NULL, 0),
-(3, 'test', 'test', 'test', 'test', 'test', 0x293e4451a7b8aafea54f29e608c6f3e8, 0, 3, '2021-03-23 02:04:03', '0', '2021-03-23 02:04:03', NULL, 0),
-(4, 'test', 'test', 'test', 'test', 'test', 0x293e4451a7b8aafea54f29e608c6f3e8, 0, 3, '2021-03-23 02:04:14', '0', '2021-03-23 02:04:14', NULL, 0),
-(5, 'test', 'test', 'test', 'test', 'test', 0x293e4451a7b8aafea54f29e608c6f3e8, 0, 3, '2021-03-23 02:04:33', '0', '2021-03-23 02:04:33', NULL, 0),
-(6, 'test', 'test', 'test', 'test', 'test', 0x293e4451a7b8aafea54f29e608c6f3e8, 1, 3, '2021-03-23 02:08:19', '0', '2021-03-23 02:08:19', NULL, 0),
-(7, NULL, NULL, NULL, NULL, '', NULL, 1, 3, '2021-03-23 02:36:02', '0', '2021-03-23 02:36:02', NULL, 0);
+(3, 'test3', 'test', 'test', 'test', 'test', 0x293e4451a7b8aafea54f29e608c6f3e8, 0, 3, '2021-03-23 08:38:50', '::1', '2021-03-23 02:04:03', '2021-04-06 01:45:33', 0),
+(4, 'test4', 'test', 'test', 'test', 'test', 0x293e4451a7b8aafea54f29e608c6f3e8, 0, 3, '2021-03-23 02:04:14', '0', '2021-03-23 02:04:14', '2021-04-06 01:45:37', 0),
+(5, 'test5', 'test', 'test', 'test', 'test', 0x293e4451a7b8aafea54f29e608c6f3e8, 0, 3, '2021-03-23 02:04:33', '0', '2021-03-23 02:04:33', '2021-04-06 01:45:40', 0),
+(6, 'test6', 'test', 'test', 'test', 'test', 0x293e4451a7b8aafea54f29e608c6f3e8, 1, 3, '2021-03-23 02:08:19', '0', '2021-03-23 02:08:19', '2021-04-06 01:45:42', 0),
+(8, 'test7', 'test', 'test1', 'test', 'test', 0x293e4451a7b8aafea54f29e608c6f3e8, 1, 3, '2021-03-23 08:38:14', '::1', '2021-03-23 13:03:52', '2021-04-06 01:45:45', 0),
+(9, 'test8', 'test', 'test12', 'test', 'test', 0x293e4451a7b8aafea54f29e608c6f3e8, 1, 3, '2021-03-23 08:38:08', '::1', '2021-03-23 13:04:22', '2021-04-06 01:45:47', 0),
+(10, 'Demo', 'Admin', 'demo@gmail.com', '9876767899', '467,this street that block', 0x293e4451a7b8aafea54f29e608c6f3e8, 1, 1, '2021-04-12 21:57:34', '::1', '2021-03-23 13:16:28', '2021-04-11 14:59:25', 0),
+(11, NULL, NULL, NULL, NULL, '', NULL, 1, 3, '2021-04-06 02:07:51', '0', '2021-04-06 02:07:51', NULL, 0),
+(12, 'Demo', 'User', 'me@gmail.com', '2346676676766', '', 0x6624db168ad16b43e7d2098acdcd1333, 1, 3, '2021-04-13 21:25:51', '::1', '2021-04-11 13:15:01', '2021-04-11 14:58:56', 0),
+(13, 'first name', 'last name ', 'mhe@gmail.com', '909090909090', '', 0x6624db168ad16b43e7d2098acdcd1333, 1, 3, '2021-04-11 13:24:05', '0', '2021-04-11 13:24:05', NULL, 0),
+(14, 'first name', 'last name ', 'gme@gmail.com', '909090909090', '', 0x6624db168ad16b43e7d2098acdcd1333, 1, 3, '2021-04-11 13:25:49', '0', '2021-04-11 13:25:49', NULL, 0),
+(15, 'first name', 'last name ', 'gmhe@gmail.com', '909090909090', '', 0x6624db168ad16b43e7d2098acdcd1333, 1, 3, '2021-04-11 13:30:04', '0', '2021-04-11 13:30:04', NULL, 0),
+(16, 'first name', 'last name ', 'hhhme@gmail.com', '909090909090', '', 0x6624db168ad16b43e7d2098acdcd1333, 1, 3, '2021-04-11 13:31:10', '0', '2021-04-11 13:31:10', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -162,6 +198,18 @@ ALTER TABLE `device`
 --
 ALTER TABLE `file`
   ADD PRIMARY KEY (`fileId`);
+
+--
+-- Indexes for table `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`itemId`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`ordersId`);
 
 --
 -- Indexes for table `service`
@@ -198,16 +246,28 @@ ALTER TABLE `file`
   MODIFY `fileId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `item`
+--
+ALTER TABLE `item`
+  MODIFY `itemId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `ordersId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1033;
+
+--
 -- AUTO_INCREMENT for table `service`
 --
 ALTER TABLE `service`
-  MODIFY `serviceId` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `serviceId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `userId` int(120) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `userrole`
