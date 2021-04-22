@@ -1,6 +1,5 @@
 <?php
 
-
 class User{
     
     public $userId;
@@ -18,8 +17,4 @@ class User{
     public $updatedOn;
     public $isDeleted;
 }
-
-
-
-
-
+?>

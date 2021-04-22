@@ -12,12 +12,14 @@ $request = json_decode($json);
 if(!empty($request->userId)){
 	$user = $dao->get("User", $request->userId, "userId");
 	if($user->userId){
-    	$user->firstName = $request->first_name;
-		$user->lastName = $request->last_name;
-		$user->email = $request->email;
-		$user->phoneNumber = $request->phone;
-		$user->password = $request->password;
-		$user->address = $request->formattedAddress;
+		
+    	$user->firstName = $request->first_name ?  $request->first_name : $user->firstName;
+		$user->lastName = $request->last_name ?  $request->last_name : $user->lastName;
+		$user->email = $request->email ?  $request->email : $user->email;
+		$user->phoneNumber = $request->phone ?  $request->phone : $user->phoneNumber;
+		$user->password = $request->password ?  $request->password : $user->password;
+		$user->address = $request->formattedAddress ?  $request->formattedAddress : $user->address;
+
 		$user->userRole = 3;
 		$user->userStatus=1;
 		$user->isDeleted = 0;
