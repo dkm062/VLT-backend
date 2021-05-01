@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/User.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/Service.php");
@@ -7,6 +7,10 @@ require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/File.php"
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/UserRole.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/Orders.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/Item.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/OrderStatus.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/TaskStatus.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/TaskType.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/Task.php");
 
 class DAO{
     

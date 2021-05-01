@@ -9,6 +9,8 @@ class User{
     public $phoneNumber;
     public $address;
     public $password;
+    public $lat;
+    public $lng;
     public $userStatus;
     public $userRole;
     public $lastLogIn;

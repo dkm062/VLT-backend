@@ -9,8 +9,16 @@ $request = json_decode($json);
 
 $Order = new Orders();
 $Order->userId = $request->userId;
+$user = $dao->get('User',$request->userId,'userId');
+$user->lat = $request->coords->latitude;
+$user->lng = $request->coords->longitude;
+$dao->update($user);
+
 $Order->orderDate = date("Y-m-d h:s:i", strtotime($request->orderDate));
 $Order->orderStatus = 1;
+$Order->instruction = $request->instruction;
+$Order->lat = $request->coords->latitude;
+$Order->lng = $request->coords->longitude;
 $orderId = $dao->add($Order);
 
 $items = (array)$request->items;

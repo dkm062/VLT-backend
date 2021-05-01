@@ -17,6 +17,7 @@ if($request->userId){
 	$newOrders=[];
 	if(count($orders)>0){
 		foreach ($orders as $o ) {
+			$o->orderStatusDesc = $dao->get("OrderStatus", $o->orderStatus, 'orderStatusId')->orderStatusDescription;
 			$items = $dao->listAllWhere('Item'," WHERE `orderId` = $o->ordersId ; ");
 			$services = $dao->listAllWhere('Service'," WHERE `serviceId` IN (SELECT `serviceId` from `Item` WHERE `orderId` = $o->ordersId ) ; ");
 			$o->items = json_encode($items);

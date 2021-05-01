@@ -19,9 +19,12 @@ if(!empty($request->userId)){
 		$user->phoneNumber = $request->phone ?  $request->phone : $user->phoneNumber;
 		$user->password = $request->password ?  $request->password : $user->password;
 		$user->address = $request->formattedAddress ?  $request->formattedAddress : $user->address;
+		$user->lat = $request->lat ?  $request->lat : $user->lat;
+		$user->lng = $request->lng ?  $request->lng : $user->lng;
 
 		$user->userRole = 3;
-		$user->userStatus=1;
+		
+		$user->userStatus = 1;
 		$user->isDeleted = 0;
 
 		$isUpdated = $dao->update($user);

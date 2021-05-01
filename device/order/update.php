@@ -11,21 +11,9 @@ $request = json_decode($json);
 if(!empty($request->ordersId)){
 	$orders = $dao->get("Orders", $request->ordersId, "ordersId");
 	if($orders->ordersId){
-    	$orders->userId = $request->userId;
-		$orders->orderDate = $request->orderDate;
 		$orders->orderStatus = $request->status;
 
 		$isUpdated = $dao->update($orders);
-
-		$items = (array)$request->items;
-		$getItems = $dao->listAll("Item", "orderId", $request->ordersId);
-		for ($i=0; $i<sizeof($items) ; $i++) { 
-			$item = $getItems[$i];			
-			$item->orderId = $request->ordersId;
-			$item->serviceId = $items[$i]->serviceId;
-			$item->price = $items[$i]->price;
-			$itemUpdated = $dao->update($item);
-		}
 
 		$response->status = $isUpdated && $itemUpdated ? 1 : 0;
 	}else{
