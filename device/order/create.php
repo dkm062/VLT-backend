@@ -6,7 +6,7 @@ $response = new Response();
 
 $json = file_get_contents('php://input');
 $request = json_decode($json);
-
+$response->orderStatuses = $dao->listAll("OrderStatus");
 $Order = new Orders();
 $Order->userId = $request->userId;
 $user = $dao->get('User',$request->userId,'userId');
@@ -49,5 +49,6 @@ class Response {
     public $orderId;
     public $itemIds;
     public $status;
+    public $orderStatuses;
 }
 ?>

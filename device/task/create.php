@@ -13,17 +13,30 @@ $task = new Task();
 $task->ordersId = $request->ordersId;
 $task->staffId = $request->staffId;
 $task->taskType = $request->taskTypeId;
-if($request->taskTypeId==1){//task type picking up 
-	$task->orderStatus = 1;
-}else if ($request->taskTypeId==2){//task type delivery 
-	$task->taskTypeId = 4;
+$isTask = $dao->listAllWhere("Task"," WHERE taskType = $request->taskTypeId AND ordersId = $request->ordersId AND taskStatus = 1 ; ");
+$isStaffOccupied = $dao->listAllWhere("Task"," WHERE staffId = $request->staffId AND taskStatus = 1 ; ");
+
+if(count($isTask)>=1){
+    $response->alreadyExist = 1;
+}else if (count($isTask)==0){
+    $response->alreadyExist = 0;
+	if (count($isStaffOccupied)>=1){
+		$taskId = 0;
+	    $response->staffOccupied = 1;
+	}else if(count($isStaffOccupied)==0){
+	    $response->staffOccupied = 0;
+		if($request->taskTypeId==1){//task type picking up
+			$task->orderStatus = 1;
+		}else if ($request->taskTypeId==2){//task type delivery 
+			$task->orderStatus = 4;
+		}
+		$task->taskStatus = 1;//task assigned
+		$task->isDeleted = 0;
+
+		$taskId = $dao->add($task);
+		$dao->close();
+	}
 }
-$task->taskStatus = 1;//task assigned
-$task->isDeleted = 0;
-
-$taskId = $dao->add($task);
-$dao->close();
-
 if($taskId){
     $response->taskId = $taskId;
     $response->status = 1; 

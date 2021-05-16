@@ -28,6 +28,11 @@ if(!empty($request->staffId)){
 		$temp = [];
 		foreach ($tasks as $t) {
 			$u = $dao->get("User", $t->staffId, 'userId');// A staff
+			
+			if($t->taskStatus==1){
+				$response->currentAssigneeStaff = $u ;
+			}
+
 			$t->staffName = $u->firstName.' '.$u->lastName ;
 			$t->taskStatusDesc = $dao->get("TaskStatus", $t->taskStatus, 'taskStatusId')->taskStatusDescription;
 			$t->taskTypeDesc = $dao->get("TaskType", $t->taskType, 'taskTypeId')->taskTypeDescription;
@@ -53,6 +58,7 @@ echo  json_encode($response);
 class Response {
 	public $staff;
 	public $tasks;
+	public $currentAssigneeStaff;
 	public $status;
 	public $taskType;
 	public $taskStatus;
