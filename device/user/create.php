@@ -10,14 +10,15 @@ $json = file_get_contents('php://input');
 $request = json_decode($json);
 
 $user = new User();
-$user->firstName = $request->first_name;
-$user->lastName = $request->last_name;
+$user->firstName = $request->firstName;
+$user->lastName = $request->lastName;
 $user->email = $request->email;
 $user->phoneNumber = $request->phone;
 $user->password = $request->password;
-$user->address = $request->formattedAddress;
-$user->userRole = 3;
-$user->userStatus=1;
+$user->address = $request->address;
+$user->userRole = $request->userRole;
+$user->pPicture = $request->pPicture;
+$user->userStatus = 1;
 $user->isDeleted = 0;
 
 $userId = $dao->add($user);

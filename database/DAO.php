@@ -11,6 +11,7 @@ require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/OrderStat
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/TaskStatus.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/TaskType.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/Task.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/entities/Review.php");
 
 class DAO{
     

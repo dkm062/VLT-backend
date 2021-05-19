@@ -8,6 +8,7 @@ class Orders{
     public $orderStatus;
     public $lat;
     public $lng;
+    public $trnId;
     public $instruction;
     public $orderDate;
     public $createdOn;

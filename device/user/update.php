@@ -13,16 +13,16 @@ if(!empty($request->userId)){
 	$user = $dao->get("User", $request->userId, "userId");
 	if($user->userId){
 		
-    	$user->firstName = $request->first_name ?  $request->first_name : $user->firstName;
-		$user->lastName = $request->last_name ?  $request->last_name : $user->lastName;
+    	$user->firstName = $request->firstName ?  $request->firstName : $user->firstName;
+		$user->lastName = $request->lastName ?  $request->lastName : $user->lastName;
 		$user->email = $request->email ?  $request->email : $user->email;
 		$user->phoneNumber = $request->phone ?  $request->phone : $user->phoneNumber;
 		$user->password = $request->password ?  $request->password : $user->password;
-		$user->address = $request->formattedAddress ?  $request->formattedAddress : $user->address;
+		$user->address = $request->address ?  $request->address : $user->address;
 		$user->lat = $request->lat ?  $request->lat : $user->lat;
 		$user->lng = $request->lng ?  $request->lng : $user->lng;
-
-		$user->userRole = 3;
+		$user->userRole = $request->userRole ?  $request->userRole : $user->userRole;
+		$user->pPicture = $request->pPicture ? $request->pPicture : "" ;
 		
 		$user->userStatus = 1;
 		$user->isDeleted = 0;

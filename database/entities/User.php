@@ -15,6 +15,7 @@ class User{
     public $userRole;
     public $lastLogIn;
     public $logInIP;
+    public $pPicture;
     public $createdOn;
     public $updatedOn;
     public $isDeleted;

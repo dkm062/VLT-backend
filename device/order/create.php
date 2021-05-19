@@ -19,6 +19,7 @@ $Order->orderStatus = 1;
 $Order->instruction = $request->instruction;
 $Order->lat = $request->coords->latitude;
 $Order->lng = $request->coords->longitude;
+$Order->trnId = $request->trnId;
 $orderId = $dao->add($Order);
 
 $items = (array)$request->items;
