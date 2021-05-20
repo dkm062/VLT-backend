@@ -2,7 +2,7 @@
     header('Content-Type: multipart/form-data; charset=utf-8');
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: PUT, GET, POST");
-    require_once($_SERVER['DOCUMENT_ROOT']."/vlt-backend/database/DAO.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/VLT-backend/database/DAO.php");
 
     $response = new Response();
 

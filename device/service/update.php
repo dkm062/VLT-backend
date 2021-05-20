@@ -18,7 +18,7 @@ if(!empty($request->serviceId)){
 		$service->status = $request->status;
 		$service->price = $request->price;
 		$service->images = $request->images;
-		$service->isDeleted = 0;
+		$service->isDeleted = $request->isDeleted ? $request->isDeleted : 0 ;
 
 		$isUpdated = $dao->update($service);
 		$response->status = $isUpdated ? 1 : 0;

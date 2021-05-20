@@ -23,9 +23,9 @@ if(!empty($request->userId)){
 		$user->lng = $request->lng ?  $request->lng : $user->lng;
 		$user->userRole = $request->userRole ?  $request->userRole : $user->userRole;
 		$user->pPicture = $request->pPicture ? $request->pPicture : "" ;
+		$user->isDeleted = $request->isDeleted ? $request->isDeleted : 0 ;
 		
 		$user->userStatus = 1;
-		$user->isDeleted = 0;
 
 		$isUpdated = $dao->update($user);
 		$response->status = $isUpdated ? 1 : 0;
