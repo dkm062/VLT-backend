@@ -29,6 +29,9 @@ if(count($isTask)>=1){
 			$task->orderStatus = 1;
 		}else if ($request->taskTypeId==2){//task type delivery 
 			$task->orderStatus = 4;
+			$orders = $dao->get("Orders", $task->ordersId, "ordersId");
+			$orders->orderStatus = $task->orderStatus;
+			$isUpdated = $dao->update($orders);
 		}
 		$task->taskStatus = 1;//task assigned
 		$task->isDeleted = 0;
