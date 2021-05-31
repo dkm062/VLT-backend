@@ -11,6 +11,7 @@ $request = json_decode($json);
 
 $response->taskType = $dao->listAll("TaskType");
 $response->taskStatus = $dao->listAll("TaskStatus");
+$response->orderStatuses = $dao->listAll("OrderStatus");
 $ordersId = $request->ordersId;
 
 if(!empty($request->staffId)){

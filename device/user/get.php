@@ -13,7 +13,7 @@ if(!empty($request->userId)){
 	$users = $dao->listAllWhere("User", "WHERE `userId`= $request->userId AND `isDeleted` = 0");
     $response->users = $users; 	
 } else {
-	$users = $dao->listAllWhere("User", "WHERE `isDeleted` = 0");
+	$users = $dao->listAllWhere("User", "WHERE `isDeleted` = 0 AND userRole IN (2,3) ");//only staff and users.
 	$response->users =  $users;
 }
  $dao->close();

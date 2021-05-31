@@ -11,11 +11,11 @@ $request = json_decode($json);
 if(!empty($request->ordersId)){
 	$orders = $dao->get("Orders", $request->ordersId, "ordersId");
 	if($orders->ordersId){
-		$orders->orderStatus = $request->status;
+		$orders->orderStatus = $request->orderStatus;
 
 		$isUpdated = $dao->update($orders);
 
-		$response->status = $isUpdated && $itemUpdated ? 1 : 0;
+		$response->status = $isUpdated ? 1 : 0;
 	}else{
     	$response->status = 0;
 	}
